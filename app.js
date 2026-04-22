@@ -253,11 +253,25 @@ function summarizePacks(counts) {
 
 function exportImage() {
     const target = document.querySelector('.results-card');
-    html2canvas(target, { backgroundColor: "#f8fafc", scale: 2 }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = `Lotus-Quanh-Gia-${document.getElementById('area').value}m2.png`;
-        link.href = canvas.toDataURL();
-        link.click();
+    if (!target) return;
+
+    // Use html2canvas with CORS enabled for external images (QR Code)
+    html2canvas(target, { 
+        backgroundColor: "#f8fafc", 
+        scale: 2,
+        useCORS: true, 
+        allowTaint: false,
+        logging: true
+    }).then(canvas => {
+        try {
+            const link = document.createElement('a');
+            link.download = `bao-gia-son-lotus-${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        } catch (e) {
+            console.error("Lỗi khi tạo ảnh:", e);
+            alert("Có lỗi xảy ra khi tạo ảnh báo giá. Vui lòng thử lại.");
+        }
     });
 }
 
