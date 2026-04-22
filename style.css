@@ -737,14 +737,32 @@ footer {
 .modal-body {
     padding: 10px;
     max-height: 80vh;
-    overflow-y: auto;
+    overflow: auto; /* Cho phép cuộn khi zoom */
     text-align: center;
+    position: relative;
+    cursor: zoom-in;
 }
 
 .modal-body img {
     max-width: 100%;
     height: auto;
     border-radius: var(--radius-md);
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+}
+
+/* Khi phóng to */
+.modal-body img.zoomed {
+    max-width: none;
+    width: 200%; /* Phóng to gấp đôi */
+    cursor: zoom-out;
+}
+
+.zoom-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 5px;
+    display: block;
 }
 
 @keyframes fadeIn {

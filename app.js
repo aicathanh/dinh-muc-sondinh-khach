@@ -239,8 +239,15 @@ function renderProcess() {
     if (paletteBtn && modal) {
         paletteBtn.onclick = () => {
             paletteImg.src = proc.paletteImg;
+            paletteImg.classList.remove('zoomed'); // Reset zoom when opening
             modalTitle.textContent = `Bảng màu: ${proc.name}`;
             modal.style.display = 'flex';
+        };
+    }
+
+    if (paletteImg) {
+        paletteImg.ondblclick = () => {
+            paletteImg.classList.toggle('zoomed');
         };
     }
 
