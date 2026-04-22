@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotus Paint - Quy Trình Định Mức Sơn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body class="customer-version">
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Lotus Paint" class="logo-image">
+            </div>
+            <h1>Báo Giá & Quy Trình Sơn Lotus</h1>
+            <p class="subtitle">Giải pháp sơn an toàn hệ nước cho mọi bề mặt</p>
+        </header>
+
+        <main>
+            <!-- Tabs for Processes -->
+            <div class="tabs-container">
+                <div class="tabs-navigation">
+                    <button class="nav-btn prev" id="prevTab"><i data-lucide="chevron-left"></i></button>
+                    <div class="tabs-scroll" id="tabsScroll">
+                        <button class="tab-btn active" data-process="lau">Sơn giữ vân gỗ (Lau)</button>
+                        <button class="tab-btn" data-process="phun">Sơn giữ vân gỗ (Phun)</button>
+                        <button class="tab-btn" data-process="bet">Sơn màu bệt (MDF)</button>
+                        <button class="tab-btn" data-process="sat">Sơn giả gỗ trên sắt</button>
+                        <button class="tab-btn" data-process="ximang">Sơn giả gỗ xi măng</button>
+                    </div>
+                    <button class="nav-btn next" id="nextTab"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </div>
+
+            <section class="config-section card">
+                <div class="config-grid">
+                    <div class="input-group">
+                        <label>Vị trí sử dụng</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="location" value="indoor" checked>
+                                <span class="radio-custom"></span> Trong nhà
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="location" value="outdoor">
+                                <span class="radio-custom"></span> Ngoài trời
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="area">Diện tích cần sơn (m²)</label>
+                        <div class="input-with-icon">
+                            <i data-lucide="maximize"></i>
+                            <input type="number" id="area" placeholder="Nhập số m2..." min="0" step="1">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process Visualizer -->
+            <section id="process-display" class="process-section">
+                <h3 class="section-title">Quy trình thực hiện</h3>
+                <div id="layers-list" class="layers-timeline">
+                    <!-- Layers will be auto-generated here -->
+                </div>
+            </section>
+
+            <!-- Result Card -->
+            <section class="results-card card shadow-premium">
+                <div class="result-header">
+                    <img src="logo.png" alt="Lotus Paint" class="logo-image-small">
+                    <div class="result-title">Kết Quả Ước Tính</div>
+                </div>
+                
+                <div id="result-summary" class="result-summary">
+                    <span id="summary-text">Vui lòng nhập diện tích</span>
+                </div>
+
+                <div id="results-breakdown" class="results-breakdown">
+                    <!-- Items breakdown here -->
+                </div>
+
+                <div class="total-section">
+                    <div class="total-row main-total">
+                        <span>TỔNG CHI PHÍ DỰ KIẾN:</span>
+                        <span class="price"><span id="total-cost">0</span> VNĐ</span>
+                    </div>
+                    <div class="total-row unit-total">
+                        <span>CHI PHÍ TRUNG BÌNH:</span>
+                        <span><span id="m2-cost">0</span> VNĐ/m²</span>
+                    </div>
+                </div>
+
+                <div class="note-section">
+                    <p>* Giá trên là giá niêm yết của hãng, chưa bao gồm chi phí vận chuyển và nhân công thi công.</p>
+                </div>
+            </section>
+
+            <div class="action-buttons">
+                <button onclick="exportImage()" class="btn btn-primary">
+                    <i data-lucide="download"></i> Tải báo giá (Ảnh)
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 Lotus Paint - Chuyên gia sơn hệ nước | Hotline: 0943 966 662</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
