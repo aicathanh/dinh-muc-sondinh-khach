@@ -28,7 +28,7 @@ const YIELDS = { 'phun': 5, 'lau': 10, 'quet': 8 };
 const PROCESSES = {
     'lau': {
         name: "Sơn giữ vân gỗ (Lau)",
-        paletteImg: "palette-go.png",
+        paletteImg: "palette-lau.png",
         layers: [
             { step: 1, name: "Sơn Lau Gỗ 1K (Wood Stain)", method: 'lau', defaultLayers: 2, currentLayers: 2 },
             { step: 2, name: "Lót Trong Suốt 1K (Sanding Sealer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
@@ -37,7 +37,7 @@ const PROCESSES = {
     },
     'phun': {
         name: "Sơn giữ vân gỗ (Phun)",
-        paletteImg: "palette-go.png",
+        paletteImg: "palette-phun.png",
         layers: [
             { step: 1, name: "Lót Trong Suốt 1K (Sanding Sealer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Sơn 2in1 Trong Nhà 1K (Finish Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Sơn 2in1 Ngoài Trời 1K (Finish Exterior)" }
@@ -72,14 +72,14 @@ const PROCESSES = {
     },
     '2k': {
         name: "Sơn giữ vân gỗ (hệ 2K)",
-        paletteImg: "palette-go.png",
+        paletteImg: "palette-2k-vun.png",
         layers: [
             { step: 1, name: "Sơn 2in1 Trong Nhà 2K (Finish MX83)", method: 'phun', defaultLayers: 2, currentLayers: 2, outdoorName: "Sơn 2in1 Ngoài Trời 2K (Finish MX83)" }
         ]
     },
     'bet2k': {
         name: "Sơn màu bệt 2K (MDF/Gỗ tự nhiên)",
-        paletteImg: "palette-bet.png",
+        paletteImg: "palette-2k-bet.png",
         layers: [
             { step: 1, name: "Lót Trắng 2K (MX83 Nội Thất)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Lót Trắng 2K (MX83 Ngoại Thất)" },
             { step: 2, name: "Màu Bệt Trong Nhà 2K (Wood Paint MX83)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 2K (Wood Paint MX83)" }
