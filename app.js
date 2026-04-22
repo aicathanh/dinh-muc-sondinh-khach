@@ -28,6 +28,7 @@ const YIELDS = { 'phun': 5, 'lau': 10, 'quet': 8 };
 const PROCESSES = {
     'lau': {
         name: "Sơn giữ vân gỗ (Lau)",
+        paletteImg: "palette-go.png",
         layers: [
             { step: 1, name: "Sơn Lau Gỗ 1K (Wood Stain)", method: 'lau', defaultLayers: 2, currentLayers: 2 },
             { step: 2, name: "Lót Trong Suốt 1K (Sanding Sealer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
@@ -36,6 +37,7 @@ const PROCESSES = {
     },
     'phun': {
         name: "Sơn giữ vân gỗ (Phun)",
+        paletteImg: "palette-go.png",
         layers: [
             { step: 1, name: "Lót Trong Suốt 1K (Sanding Sealer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Sơn 2in1 Trong Nhà 1K (Finish Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Sơn 2in1 Ngoài Trời 1K (Finish Exterior)" }
@@ -43,6 +45,7 @@ const PROCESSES = {
     },
     'bet': {
         name: "Sơn màu bệt (MDF/Gỗ tự nhiên)",
+        paletteImg: "palette-bet.png",
         layers: [
             { step: 1, name: "Lót Trắng 1K (White Wood Primer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Màu Bệt Trong Nhà 1K (Wood Paint Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 1K (Wood Paint Exterior)" },
@@ -51,6 +54,7 @@ const PROCESSES = {
     },
     'sat': {
         name: "Sơn giả gỗ trên sắt",
+        paletteImg: "palette-sat.png",
         layers: [
             { step: 1, name: "Lót Kim Loại Chống Gỉ (Metal Primer) (LMCP)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Metal Coat Finish giả gỗ (LWF)", method: 'quet', defaultLayers: 2, currentLayers: 2 },
@@ -59,6 +63,7 @@ const PROCESSES = {
     },
     'ximang': {
         name: "Sơn giả gỗ xi măng",
+        paletteImg: "palette-ximang.png",
         layers: [
             { step: 1, name: "Lót Giả Gỗ Tấm Xi Măng (Fiber Cement Wood Primer)", method: 'quet', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Màu Giả Gỗ Vách/Trần Tấm Xi Măng (Fiber Cement Plank Paint)", method: 'quet', defaultLayers: 2, currentLayers: 2 },
@@ -67,12 +72,14 @@ const PROCESSES = {
     },
     '2k': {
         name: "Sơn giữ vân gỗ (hệ 2K)",
+        paletteImg: "palette-go.png",
         layers: [
             { step: 1, name: "Sơn 2in1 Trong Nhà 2K (Finish MX83)", method: 'phun', defaultLayers: 2, currentLayers: 2, outdoorName: "Sơn 2in1 Ngoài Trời 2K (Finish MX83)" }
         ]
     },
     'bet2k': {
         name: "Sơn màu bệt 2K (MDF/Gỗ tự nhiên)",
+        paletteImg: "palette-bet.png",
         layers: [
             { step: 1, name: "Lót Trắng 2K (MX83 Nội Thất)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Lót Trắng 2K (MX83 Ngoại Thất)" },
             { step: 2, name: "Màu Bệt Trong Nhà 2K (Wood Paint MX83)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 2K (Wood Paint MX83)" }
@@ -127,10 +134,23 @@ function setupEventListeners() {
 }
 
 function renderProcess() {
-    const list = document.getElementById('layers-list');
-    list.innerHTML = '';
     const proc = PROCESSES[currentProcess];
     
+    // Update Title and Palette Button
+    const procTitle = document.getElementById('process-title');
+    const paletteContainer = document.getElementById('palette-btn-container');
+    
+    if (procTitle) procTitle.textContent = `Quy trình: ${proc.name}`;
+    if (paletteContainer) {
+        paletteContainer.innerHTML = proc.paletteImg ? `
+            <button class="palette-btn" id="openPalette">
+                <i data-lucide="palette" style="width:16px;height:16px;"></i> Click xem bảng màu
+            </button>
+        ` : '';
+    }
+
+    const list = document.getElementById('layers-list');
+    list.innerHTML = '';
     proc.layers.forEach((l, index) => {
         // Skip step 3 of 'sat' if indoor
         if (currentProcess === 'sat' && l.isOutdoorOnly && currentLocation === 'indoor') return;
@@ -208,6 +228,28 @@ function renderProcess() {
             }
         };
     });
+
+    // Palette Modal Logic
+    const paletteBtn = document.getElementById('openPalette');
+    const modal = document.getElementById('paletteModal');
+    const closeModal = document.getElementById('closeModal');
+    const paletteImg = document.getElementById('paletteImage');
+    const modalTitle = document.getElementById('modalTitle');
+
+    if (paletteBtn && modal) {
+        paletteBtn.onclick = () => {
+            paletteImg.src = proc.paletteImg;
+            modalTitle.textContent = `Bảng màu: ${proc.name}`;
+            modal.style.display = 'flex';
+        };
+    }
+
+    if (modal) {
+        closeModal.onclick = () => modal.style.display = 'none';
+        window.onclick = (event) => {
+            if (event.target == modal) modal.style.display = 'none';
+        };
+    }
 
     lucide.createIcons();
 }

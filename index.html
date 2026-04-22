@@ -68,7 +68,10 @@
 
             <!-- Process Visualizer -->
             <section id="process-display" class="process-section">
-                <h3 class="section-title">Quy trình thực hiện</h3>
+                <div class="process-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                    <h3 id="process-title" class="section-title" style="margin-bottom:0;">Quy trình thực hiện</h3>
+                    <div id="palette-btn-container"></div>
+                </div>
                 <div id="layers-list" class="layers-timeline">
                     <!-- Layers will be auto-generated here -->
                 </div>
@@ -124,6 +127,19 @@
         </main>
 
         </main>
+    </div>
+
+    <!-- Color Palette Modal -->
+    <div id="paletteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Bảng màu quy trình</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="paletteImage" src="" alt="Bảng màu">
+            </div>
+        </div>
     </div>
 
     <script src="app.js"></script>
