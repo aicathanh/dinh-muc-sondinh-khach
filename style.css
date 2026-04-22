@@ -488,17 +488,60 @@ header h1 {
 }
 
 .result-footer {
-    margin-top: 10px;
+    margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    text-align: center;
+    border-top: 2px dashed var(--border);
 }
 
-.result-footer p {
-    font-size: 0.9rem;
-    font-weight: 700;
+.qr-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.qr-image {
+    width: 90px;
+    height: 90px;
+    border: 1px solid var(--border);
+    padding: 5px;
+    background: white;
+    border-radius: 8px;
+}
+
+.qr-text {
+    text-align: left;
+}
+
+.qr-title {
+    font-size: 0.85rem;
+    font-weight: 800;
     color: var(--primary-dark);
-    letter-spacing: 0.5px;
+    margin-bottom: 2px !important;
+}
+
+.qr-url {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 2px !important;
+}
+
+.qr-hotline {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* Response for small screens */
+@media (max-width: 400px) {
+    .qr-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .qr-text {
+        text-align: center;
+    }
 }
 
 /* Buttons */
