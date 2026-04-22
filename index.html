@@ -39,17 +39,19 @@
 
             <section class="config-section card">
                 <div class="config-grid">
-                    <div class="input-group">
+                    <div class="input-group full-width">
                         <label>Vị trí sử dụng</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="location" value="indoor" checked>
-                                <span class="radio-custom"></span> Trong nhà
+                        <div class="segmented-control">
+                            <input type="radio" name="location" id="indoor" value="indoor" checked>
+                            <label for="indoor" class="segment-btn">
+                                <i data-lucide="home"></i> Trong nhà
                             </label>
-                            <label class="radio-label">
-                                <input type="radio" name="location" value="outdoor">
-                                <span class="radio-custom"></span> Ngoài trời
+                            
+                            <input type="radio" name="location" id="outdoor" value="outdoor">
+                            <label for="outdoor" class="segment-btn">
+                                <i data-lucide="sun"></i> Ngoài trời
                             </label>
+                            <div class="selection-slider"></div>
                         </div>
                     </div>
                     <div class="input-group">

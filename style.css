@@ -203,48 +203,70 @@ header h1 {
     box-shadow: 0 0 0 4px var(--primary-light);
 }
 
-/* Radio Buttons */
-.radio-group {
+/* Segmented Control */
+.segmented-control {
     display: flex;
-    gap: 15px;
+    background: #f1f5f9;
+    padding: 4px;
+    border-radius: var(--radius-md);
+    position: relative;
+    user-select: none;
+    border: 1px solid var(--border);
 }
 
-.radio-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-.radio-label input {
+.segmented-control input {
     display: none;
 }
 
-.radio-custom {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border);
-    border-radius: 50%;
-    position: relative;
+.segment-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
     transition: var(--transition);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.radio-label input:checked + .radio-custom {
-    border-color: var(--primary);
+.segment-btn i {
+    width: 18px;
+    height: 18px;
 }
 
-.radio-label input:checked + .radio-custom::after {
-    content: '';
+.selection-slider {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
     background: var(--primary);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    border-radius: calc(var(--radius-md) - 4px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+}
+
+#indoor:checked ~ .selection-slider {
+    transform: translateX(0);
+}
+
+#outdoor:checked ~ .selection-slider {
+    transform: translateX(100%);
+}
+
+#indoor:checked ~ label[for="indoor"],
+#outdoor:checked ~ label[for="outdoor"] {
+    color: white;
+}
+
+.input-group.full-width {
+    grid-column: 1 / -1;
 }
 
 /* Process Display */
