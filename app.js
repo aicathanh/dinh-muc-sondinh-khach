@@ -13,7 +13,10 @@ const products = [
   { "category": "KIM LOẠI (1K)", "name": "Metal Coat Finish giả gỗ (LWF)", "prices": { "1kg": 297000, "5kg": 1366200, "20kg": 5303880 } },
   { "category": "SƠN GIẢ GỖ XI MĂNG", "name": "Lót Giả Gỗ Tấm Xi Măng (Fiber Cement Wood Primer)", "prices": { "1kg": 198000, "3.5kg": 682000 } },
   { "category": "SƠN GIẢ GỖ XI MĂNG", "name": "Màu Giả Gỗ Vách/Trần Tấm Xi Măng (Fiber Cement Plank Paint)", "prices": { "1kg": 297000, "3.5kg": 1028500 } },
-  { "category": "SƠN GIẢ GỖ XI MĂNG", "name": "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", "prices": { "1kg": 192500, "3.5kg": 662200 } }
+  { "category": "SƠN GIẢ GỖ XI MĂNG", "name": "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", "prices": { "1kg": 192500, "3.5kg": 662200 } },
+  { "category": "HỆ 2K", "name": "Sơn 2in1 Trong Nhà 2K (Finish MX83)", "prices": { "1kg": 280000, "5kg": 1350000 }, "hasHardener": true },
+  { "category": "HỆ 2K", "name": "Sơn 2in1 Ngoài Trời 2K (Finish MX83)", "prices": { "1kg": 350000, "5kg": 1700000 }, "hasHardener": true },
+  { "category": "HỆ 2K", "name": "Chất đóng rắn 2K (Hardener)", "prices": { "1kg": 480000, "5kg": 2300000 } }
 ];
 
 const YIELDS = { 'phun': 5, 'lau': 10, 'quet': 8 };
@@ -56,6 +59,12 @@ const PROCESSES = {
             { step: 1, name: "Lót Giả Gỗ Tấm Xi Măng (Fiber Cement Wood Primer)", method: 'quet', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Màu Giả Gỗ Vách/Trần Tấm Xi Măng (Fiber Cement Plank Paint)", method: 'quet', defaultLayers: 2, currentLayers: 2 },
             { step: 3, name: "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", method: 'quet', defaultLayers: 1, currentLayers: 1 }
+        ]
+    },
+    '2k': {
+        name: "Sơn giữ vân gỗ (hệ 2K)",
+        layers: [
+            { step: 1, name: "Sơn 2in1 Trong Nhà 2K (Finish MX83)", method: 'phun', defaultLayers: 2, currentLayers: 2, outdoorName: "Sơn 2in1 Ngoài Trời 2K (Finish MX83)" }
         ]
     }
 };
@@ -210,6 +219,33 @@ function calculate() {
             </div>
         `;
         breakdown.appendChild(item);
+
+        // EXTRA: Hardener logic for 2K systems
+        if (product.hasHardener) {
+            const hProduct = products.find(p => p.name === "Chất đóng rắn 2K (Hardener)");
+            if (hProduct) {
+                // Hardener is usually 25% of the paint volume (ratio 4:1)
+                const hKgNeeded = kgNeeded * 0.25;
+                const hPacks = getPackCounts(hKgNeeded, hProduct.prices);
+                const hCost = calculateCost(hPacks, hProduct.prices);
+                totalCost += hCost;
+
+                const hItem = document.createElement('div');
+                hItem.className = 'breakdown-item h-item';
+                hItem.style.borderLeftColor = "#f59e0b"; // Golden/Hardener color
+                hItem.innerHTML = `
+                    <div class="item-row">
+                        <span class="item-name">Chất đóng rắn 2K (Hardener)</span>
+                        <span class="item-price">${hCost.toLocaleString('vi-VN')}đ</span>
+                    </div>
+                    <div class="item-qty">Cần dùng: ${hKgNeeded.toFixed(2)} Kg | Mua: ${summarizePacks(hPacks)}</div>
+                    <div class="item-details">
+                        <span class="tag">Đi kèm ${prodName}</span>
+                    </div>
+                `;
+                breakdown.appendChild(hItem);
+            }
+        }
     });
 
     document.getElementById('total-cost').textContent = totalCost.toLocaleString('vi-VN');
