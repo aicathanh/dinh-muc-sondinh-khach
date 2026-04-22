@@ -308,7 +308,7 @@ function calculate() {
                 <span class="tag">${layerCount} lớp</span>
                 <span class="tag">${l.method}</span>
             </div>
-            <div class="detail-btn" onclick="toggleDetails(this)">
+            <div class="detail-btn" onclick="toggleDetails(this)" data-html2canvas-ignore="true">
                 <i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá
             </div>
             <div class="price-details">
@@ -346,7 +346,7 @@ function calculate() {
                     <div class="item-details">
                         <span class="tag">Đi kèm ${prodName}</span>
                     </div>
-                    <div class="detail-btn" onclick="toggleDetails(this)">
+                    <div class="detail-btn" onclick="toggleDetails(this)" data-html2canvas-ignore="true">
                         <i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá
                     </div>
                     <div class="price-details">
