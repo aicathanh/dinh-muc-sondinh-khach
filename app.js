@@ -311,7 +311,7 @@ function calculate() {
             <div class="detail-btn" onclick="toggleDetails(this)" data-html2canvas-ignore="true">
                 <i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá
             </div>
-            <div class="price-details">
+            <div class="price-details" data-html2canvas-ignore="true">
                 <div class="price-list">
                     ${renderPriceList(product.prices)}
                 </div>
@@ -349,7 +349,7 @@ function calculate() {
                     <div class="detail-btn" onclick="toggleDetails(this)" data-html2canvas-ignore="true">
                         <i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá
                     </div>
-                    <div class="price-details">
+                    <div class="price-details" data-html2canvas-ignore="true">
                         <div class="price-list">
                             ${renderPriceList(hProduct.prices)}
                         </div>
