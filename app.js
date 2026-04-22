@@ -203,7 +203,7 @@ function calculate() {
                 <span class="item-name">${prodName}</span>
                 <span class="item-price">${cost.toLocaleString('vi-VN')}đ</span>
             </div>
-            <div class="item-qty">Cần xài: ${kgNeeded.toFixed(2)} Kg | Mua: ${summarizePacks(packCounts)}</div>
+            <div class="item-qty">Định mức: ${kgNeeded.toFixed(2)} Kg | Mua: ${summarizePacks(packCounts)}</div>
             <div class="item-details">
                 <span class="tag">${layerCount} lớp</span>
                 <span class="tag">${l.method}</span>
