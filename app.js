@@ -14,8 +14,8 @@ const products = [
   { "category": "SƠN GIẢ GỖ XI MĂNG", "name": "Lót Giả Gỗ Tấm Xi Măng (Fiber Cement Wood Primer)", "prices": { "1kg": 198000, "3.5kg": 682000 } },
   { "category": "SƠN GIẢ GỖ XI MĂNG", "name": "Màu Giả Gỗ Vách/Trần Tấm Xi Măng (Fiber Cement Plank Paint)", "prices": { "1kg": 297000, "3.5kg": 1028500 } },
   { "category": "SƠN GIẢ GỖ XI MĂNG", "name": "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", "prices": { "1kg": 192500, "3.5kg": 662200 } },
-  { "category": "HỆ 2K", "name": "Sơn 2in1 Trong Nhà 2K (Finish MX83)", "prices": { "1kg": 280000, "5kg": 1350000 }, "hasHardener": true },
-  { "category": "HỆ 2K", "name": "Sơn 2in1 Ngoài Trời 2K (Finish MX83)", "prices": { "1kg": 350000, "5kg": 1700000 }, "hasHardener": true },
+  { "category": "HỆ 2K", "name": "Sơn 2in1 Trong Nhà 2K (Finish MX83)", "prices": { "1kg": 205200, "5kg": 972000, "20kg": 3672000 }, "hasHardener": true, "hardenerRatio": 0.15 },
+  { "category": "HỆ 2K", "name": "Sơn 2in1 Ngoài Trời 2K (Finish MX83)", "prices": { "1kg": 234360, "5kg": 1117800, "20kg": 4255200 }, "hasHardener": true, "hardenerRatio": 0.15 },
   { "category": "HỆ 2K", "name": "Chất đóng rắn 2K (Hardener)", "prices": { "1kg": 480000, "5kg": 2300000 } }
 ];
 
@@ -224,8 +224,9 @@ function calculate() {
         if (product.hasHardener) {
             const hProduct = products.find(p => p.name === "Chất đóng rắn 2K (Hardener)");
             if (hProduct) {
-                // Hardener is usually 25% of the paint volume (ratio 4:1)
-                const hKgNeeded = kgNeeded * 0.25;
+                // Use the specific product's ratio (e.g., 0.15 for MX83) or default to 0.25
+                const hRatio = product.hardenerRatio || 0.25;
+                const hKgNeeded = kgNeeded * hRatio;
                 const hPacks = getPackCounts(hKgNeeded, hProduct.prices);
                 const hCost = calculateCost(hPacks, hProduct.prices);
                 totalCost += hCost;
