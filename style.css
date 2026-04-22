@@ -465,6 +465,20 @@ header h1 {
     text-align: center;
 }
 
+.result-footer {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.result-footer p {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: 0.5px;
+}
+
 /* Buttons */
 .action-buttons {
     display: flex;
