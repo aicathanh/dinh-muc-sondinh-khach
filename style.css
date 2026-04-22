@@ -647,9 +647,22 @@ input:checked + .slider:before {
 }
 
 .btn-primary:hover {
-    background: #022c22;
+    background: #047857;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+}
+
+#exportBtn {
+    background: #f97316 !important; /* Cam nổi bật */
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.39) !important;
+}
+
+#exportBtn:hover {
+    background: #ea580c !important;
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45) !important;
+    transform: translateY(-2px);
 }
 
 footer {
