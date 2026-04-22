@@ -46,7 +46,7 @@ const PROCESSES = {
         layers: [
             { step: 1, name: "Lót Trắng 1K (White Wood Primer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Màu Bệt Trong Nhà 1K (Wood Paint Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 1K (Wood Paint Exterior)" },
-            { step: 3, name: "Phủ Bóng Lacquer Trong Nhà 1K", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Phủ Bóng Lacquer Ngoài Trời 1K" }
+            { step: 3, name: "Phủ Bóng Lacquer Trong Nhà 1K", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Phủ Bóng Lacquer Ngoài Trời 1K", optional: true }
         ]
     },
     'sat': {
@@ -54,7 +54,7 @@ const PROCESSES = {
         layers: [
             { step: 1, name: "Lót Kim Loại Chống Gỉ (Metal Primer) (LMCP)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Metal Coat Finish giả gỗ (LWF)", method: 'quet', defaultLayers: 2, currentLayers: 2 },
-            { step: 3, name: "Phủ Bóng Lacquer Ngoài Trời 1K", method: 'phun', defaultLayers: 0, currentLayers: 1, isOutdoorOnly: true }
+            { step: 3, name: "Phủ Bóng Lacquer Ngoài Trời 1K", method: 'phun', defaultLayers: 0, currentLayers: 1, isOutdoorOnly: true, optional: true }
         ]
     },
     'ximang': {
@@ -62,7 +62,7 @@ const PROCESSES = {
         layers: [
             { step: 1, name: "Lót Giả Gỗ Tấm Xi Măng (Fiber Cement Wood Primer)", method: 'quet', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Màu Giả Gỗ Vách/Trần Tấm Xi Măng (Fiber Cement Plank Paint)", method: 'quet', defaultLayers: 2, currentLayers: 2 },
-            { step: 3, name: "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", method: 'quet', defaultLayers: 1, currentLayers: 1 }
+            { step: 3, name: "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", method: 'quet', defaultLayers: 1, currentLayers: 1, optional: 'indoorOnly' }
         ]
     },
     '2k': {
@@ -136,26 +136,56 @@ function renderProcess() {
         if (currentProcess === 'sat' && l.isOutdoorOnly && currentLocation === 'indoor') return;
 
         const prodName = (currentLocation === 'outdoor' && l.outdoorName) ? l.outdoorName : l.name;
+        
+        // Determine if optional toggle should show
+        let isStepOptional = false;
+        if (l.optional === true) isStepOptional = true;
+        if (l.optional === 'indoorOnly' && currentLocation === 'indoor') isStepOptional = true;
+
         const step = document.createElement('div');
-        step.className = 'step-card';
+        step.className = `step-card ${l.disabled ? 'disabled-step' : ''}`;
         step.innerHTML = `
             <div class="step-num">${l.step}</div>
             <div class="step-body">
                 <h4>${prodName}</h4>
                 <p>Phương pháp: ${l.method === 'phun' ? 'Phun' : (l.method === 'lau' ? 'Lau' : 'Quét')}</p>
+                ${isStepOptional ? '<p class="save-note">Lớp này không bắt buộc, có thể bỏ qua để tiết kiệm chi phí.</p>' : ''}
             </div>
-            <div class="layer-control">
-                <button class="layer-btn minus" data-idx="${index}"><i data-lucide="minus"></i></button>
-                <div class="layer-count"><span>${l.currentLayers === 0 && l.isOutdoorOnly ? 1 : l.currentLayers}</span> lớp</div>
-                <button class="layer-btn plus" data-idx="${index}"><i data-lucide="plus"></i></button>
+            <div class="step-actions">
+                ${isStepOptional ? `
+                    <div class="toggle-container">
+                        <span class="toggle-label">${l.disabled ? 'Không chọn' : 'Đã chọn'}</span>
+                        <label class="switch">
+                            <input type="checkbox" class="optional-toggle" data-idx="${index}" ${l.disabled ? '' : 'checked'}>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                ` : ''}
+                <div class="layer-control" style="${l.disabled ? 'opacity: 0.3; pointer-events: none;' : ''}">
+                    <button class="layer-btn minus" data-idx="${index}"><i data-lucide="minus"></i></button>
+                    <div class="layer-count"><span>${l.currentLayers === 0 && l.isOutdoorOnly ? 1 : l.currentLayers}</span> lớp</div>
+                    <button class="layer-btn plus" data-idx="${index}"><i data-lucide="plus"></i></button>
+                </div>
             </div>
         `;
         list.appendChild(step);
     });
+
+    lucide.createIcons();
     
     // Add logic for button clicks
     const minusBtns = document.querySelectorAll('.layer-btn.minus');
     const plusBtns = document.querySelectorAll('.layer-btn.plus');
+    const toggles = document.querySelectorAll('.optional-toggle');
+
+    toggles.forEach(t => {
+        t.onchange = () => {
+            const idx = t.dataset.idx;
+            proc.layers[idx].disabled = !t.checked;
+            renderProcess();
+            calculate();
+        };
+    });
 
     minusBtns.forEach(btn => {
         btn.onclick = () => {
@@ -199,8 +229,9 @@ function calculate() {
     let totalCost = 0;
 
     proc.layers.forEach(l => {
-        // Skip step 3 of 'sat' if indoor
+        // Skip hidden steps
         if (currentProcess === 'sat' && l.isOutdoorOnly && currentLocation === 'indoor') return;
+        if (l.disabled) return;
 
         const prodName = (currentLocation === 'outdoor' && l.outdoorName) ? l.outdoorName : l.name;
         const product = products.find(p => p.name === prodName);
