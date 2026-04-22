@@ -42,7 +42,7 @@ const PROCESSES = {
         ]
     },
     'bet': {
-        name: "Sơn màu bệt (MDF)",
+        name: "Sơn màu bệt (MDF/Gỗ tự nhiên)",
         layers: [
             { step: 1, name: "Lót Trắng 1K (White Wood Primer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
             { step: 2, name: "Màu Bệt Trong Nhà 1K (Wood Paint Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 1K (Wood Paint Exterior)" },
@@ -72,7 +72,7 @@ const PROCESSES = {
         ]
     },
     'bet2k': {
-        name: "Sơn màu bệt 2K (MDF/gỗ tự nhiên)",
+        name: "Sơn màu bệt 2K (MDF/Gỗ tự nhiên)",
         layers: [
             { step: 1, name: "Lót Trắng 2K (MX83 Nội Thất)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Lót Trắng 2K (MX83 Ngoại Thất)" },
             { step: 2, name: "Màu Bệt Trong Nhà 2K (Wood Paint MX83)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 2K (Wood Paint MX83)" }
