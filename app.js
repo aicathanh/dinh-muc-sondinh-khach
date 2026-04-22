@@ -16,6 +16,10 @@ const products = [
   { "category": "SƠN GIẢ GỖ XI MĂNG", "name": "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", "prices": { "1kg": 192500, "3.5kg": 662200 } },
   { "category": "HỆ 2K", "name": "Sơn 2in1 Trong Nhà 2K (Finish MX83)", "prices": { "1kg": 205200, "5kg": 972000, "20kg": 3672000 }, "hasHardener": true, "hardenerRatio": 0.15 },
   { "category": "HỆ 2K", "name": "Sơn 2in1 Ngoài Trời 2K (Finish MX83)", "prices": { "1kg": 234360, "5kg": 1117800, "20kg": 4255200 }, "hasHardener": true, "hardenerRatio": 0.15 },
+  { "category": "HỆ 2K", "name": "Lót Trắng 2K (MX83 Nội Thất)", "prices": { "1kg": 183600, "5kg": 891000, "20kg": 3456000 }, "hasHardener": true, "hardenerRatio": 0.10 },
+  { "category": "HỆ 2K", "name": "Lót Trắng 2K (MX83 Ngoại Thất)", "prices": { "1kg": 213600, "5kg": 1041000, "20kg": 4056000 }, "hasHardener": true, "hardenerRatio": 0.10 },
+  { "category": "HỆ 2K", "name": "Màu Bệt Trong Nhà 2K (Wood Paint MX83)", "prices": { "1kg": 210600, "5kg": 999000, "20kg": 3780000 }, "hasHardener": true, "hardenerRatio": 0.15 },
+  { "category": "HỆ 2K", "name": "Màu Bệt Ngoài Trời 2K (Wood Paint MX83)", "prices": { "1kg": 239760, "5kg": 1144800, "20kg": 4363200 }, "hasHardener": true, "hardenerRatio": 0.15 },
   { "category": "HỆ 2K", "name": "Chất đóng rắn 2K (Hardener)", "prices": { "1kg": 480000, "5kg": 2300000 } }
 ];
 
@@ -65,6 +69,13 @@ const PROCESSES = {
         name: "Sơn giữ vân gỗ (hệ 2K)",
         layers: [
             { step: 1, name: "Sơn 2in1 Trong Nhà 2K (Finish MX83)", method: 'phun', defaultLayers: 2, currentLayers: 2, outdoorName: "Sơn 2in1 Ngoài Trời 2K (Finish MX83)" }
+        ]
+    },
+    'bet2k': {
+        name: "Sơn màu bệt 2K (MDF/gỗ tự nhiên)",
+        layers: [
+            { step: 1, name: "Lót Trắng 2K (MX83 Nội Thất)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Lót Trắng 2K (MX83 Ngoại Thất)" },
+            { step: 2, name: "Màu Bệt Trong Nhà 2K (Wood Paint MX83)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 2K (Wood Paint MX83)" }
         ]
     }
 };
