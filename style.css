@@ -788,3 +788,76 @@ footer {
         max-width: 100%;
     }
 }
+
+/* Price Detail Accordion */
+.price-details {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    animation: slideDown 0.3s ease;
+}
+
+.price-details.active {
+    display: block;
+}
+
+.price-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+    margin-bottom: 10px;
+    background: #f8fafc;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    text-align: left;
+}
+
+.price-tag {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.price-tag strong {
+    color: var(--primary);
+    display: block;
+    font-size: 0.85rem;
+}
+
+.calc-explanation {
+    font-size: 0.8rem;
+    color: var(--text-main);
+    background: #fffbeb;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    border-left: 4px solid #f59e0b;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.detail-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #ecfdf5;
+    transition: all 0.2s;
+    border: 1px solid #d1fae5;
+}
+
+.detail-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

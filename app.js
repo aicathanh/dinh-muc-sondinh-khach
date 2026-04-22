@@ -308,6 +308,18 @@ function calculate() {
                 <span class="tag">${layerCount} lớp</span>
                 <span class="tag">${l.method}</span>
             </div>
+            <div class="detail-btn" onclick="toggleDetails(this)">
+                <i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá
+            </div>
+            <div class="price-details">
+                <div class="price-list">
+                    ${renderPriceList(product.prices)}
+                </div>
+                <div class="calc-explanation">
+                    <strong>Chi tiết tính toán:</strong><br>
+                    ${getCalcExplanation(packCounts, product.prices)}
+                </div>
+            </div>
         `;
         breakdown.appendChild(item);
 
@@ -333,6 +345,18 @@ function calculate() {
                     <div class="item-qty">Cần dùng: ${hKgNeeded.toFixed(2)} Kg | Mua: ${summarizePacks(hPacks)}</div>
                     <div class="item-details">
                         <span class="tag">Đi kèm ${prodName}</span>
+                    </div>
+                    <div class="detail-btn" onclick="toggleDetails(this)">
+                        <i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá
+                    </div>
+                    <div class="price-details">
+                        <div class="price-list">
+                            ${renderPriceList(hProduct.prices)}
+                        </div>
+                        <div class="calc-explanation">
+                            <strong>Chi tiết tính toán:</strong><br>
+                            ${getCalcExplanation(hPacks, hProduct.prices)}
+                        </div>
                     </div>
                 `;
                 breakdown.appendChild(hItem);
@@ -368,6 +392,34 @@ function calculateCost(counts, prices) {
            (counts.c5 * (prices["5kg"] || 0)) + 
            (counts.c35 * (prices["3.5kg"] || 0)) + 
            (counts.c1 * (prices["1kg"] || 0));
+}
+
+function toggleDetails(btn) {
+    const details = btn.nextElementSibling;
+    const isActive = details.classList.toggle('active');
+    btn.innerHTML = isActive ? 
+        `<i data-lucide="chevron-up" style="width:14px;height:14px;"></i> Thu gọn chi tiết` : 
+        `<i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá`;
+    lucide.createIcons();
+}
+
+function renderPriceList(prices) {
+    return Object.entries(prices).map(([size, price]) => `
+        <div class="price-tag">
+            ${size}:
+            <strong>${price.toLocaleString('vi-VN')}đ</strong>
+        </div>
+    `).join('');
+}
+
+function getCalcExplanation(counts, prices) {
+    const lines = [];
+    if (counts.c20) lines.push(`${counts.c20} thùng 20kg x ${prices["20kg"].toLocaleString('vi-VN')}đ`);
+    if (counts.c5) lines.push(`${counts.c5} thùng 5kg x ${prices["5kg"].toLocaleString('vi-VN')}đ`);
+    if (counts.c35) lines.push(`${counts.c35} thùng 3.5kg x ${prices["3.5kg"].toLocaleString('vi-VN')}đ`);
+    if (counts.c1) lines.push(`${counts.c1} lon 1kg x ${prices["1kg"].toLocaleString('vi-VN')}đ`);
+    
+    return lines.join('<br>+ ') + ` = <strong>${calculateCost(counts, prices).toLocaleString('vi-VN')}đ</strong>`;
 }
 
 function summarizePacks(counts) {
