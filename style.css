@@ -543,6 +543,17 @@ header h1 {
     margin-bottom: 2px !important;
 }
 
+.hotline-link {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.hotline-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
 .step-actions {
     display: flex;
     flex-direction: column;
