@@ -169,7 +169,7 @@ function renderProcess() {
             <div class="step-body">
                 <h4>${prodName}</h4>
                 <p>Phương pháp: ${l.method === 'phun' ? 'Phun' : (l.method === 'lau' ? 'Lau' : 'Quét')}</p>
-                ${isStepOptional ? '<p class="save-note">Lớp này không bắt buộc, có thể bỏ qua để tiết kiệm chi phí.</p>' : ''}
+                ${isStepOptional ? '<p class="save-note">Lớp hoàn thiện cao cấp: Giúp tăng cường độ bền tối đa và tạo vẻ đẹp sắc nét nhất cho công trình.</p>' : ''}
             </div>
             <div class="step-actions">
                 ${isStepOptional ? `
