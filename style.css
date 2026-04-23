@@ -474,6 +474,22 @@ header h1 {
     color: #34d399;
 }
 
+@media (max-width: 600px) {
+    .total-row.main-total {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .main-total span:first-child {
+        font-size: 0.9rem;
+    }
+    
+    .main-total .price {
+        font-size: 1.4rem; /* Giảm thêm trên mobile để an toàn */
+    }
+}
+
 .unit-total {
     font-size: 0.9rem;
     opacity: 0.9;
