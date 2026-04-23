@@ -266,15 +266,21 @@ function calculate() {
     const breakdown = document.getElementById('results-breakdown');
     breakdown.innerHTML = '';
     
-    document.getElementById('summary-text').textContent = area > 0 ? `Định mức cho ${area} m²` : "Vui lòng nhập diện tích";
-
-    if (area === 0) {
+    const proc = PROCESSES[currentProcess];
+    const summaryText = document.getElementById('summary-text');
+    const summaryProcess = document.getElementById('summary-process');
+    
+    if (area <= 0) {
+        summaryText.textContent = "Vui lòng nhập diện tích";
+        if (summaryProcess) summaryProcess.textContent = "";
         document.getElementById('total-cost').textContent = "0";
         document.getElementById('m2-cost').textContent = "0";
         return;
     }
 
-    const proc = PROCESSES[currentProcess];
+    summaryText.textContent = `Định mức cho ${area} m²`;
+    if (summaryProcess) summaryProcess.textContent = `Quy trình: ${proc.name}`;
+
     let totalCost = 0;
 
     proc.layers.forEach(l => {
