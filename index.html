@@ -120,10 +120,14 @@
                 </div>
             </section>
 
-            <div class="action-buttons">
-                <button id="exportBtn" onclick="exportImage()" class="btn btn-primary" style="background: #f97316 !important; border: none !important; color: white !important; box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.39) !important; font-size: 1.15rem !important; font-weight: 700 !important;">
-                    <i data-lucide="download"></i> Tải báo giá (Ảnh)
+            <div class="action-buttons" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                <button id="zaloBtn" onclick="sendZalo()" class="btn btn-zalo" style="width: 100%; max-width: 400px; background: #0068ff !important; border: none !important; color: white !important; padding: 18px !important; border-radius: 50px !important; font-size: 1.2rem !important; font-weight: 800 !important; box-shadow: 0 10px 25px rgba(0, 104, 255, 0.3) !important; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer;">
+                    <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i> NHẬN ƯU ĐÃI QUA ZALO NGAY
                 </button>
+                
+                <span onclick="exportImage()" style="font-size: 0.85rem; color: #64748b; text-decoration: underline; cursor: pointer; padding: 5px 10px; opacity: 0.8;">
+                    Tải báo giá về máy (Ảnh)
+                </span>
             </div>
         </main>
 

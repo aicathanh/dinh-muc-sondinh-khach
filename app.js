@@ -26,65 +26,13 @@ const products = [
 const YIELDS = { 'phun': 5, 'lau': 10, 'quet': 8 };
 
 const PROCESSES = {
-    'lau': {
-        name: "Sơn giữ vân gỗ (Lau)",
-        paletteImg: "palette-lau.png",
-        layers: [
-            { step: 1, name: "Sơn Lau Gỗ 1K (Wood Stain)", method: 'lau', defaultLayers: 2, currentLayers: 2 },
-            { step: 2, name: "Lót Trong Suốt 1K (Sanding Sealer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
-            { step: 3, name: "Phủ Bóng Lacquer Trong Nhà 1K", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Phủ Bóng Lacquer Ngoài Trời 1K" }
-        ]
-    },
-    'phun': {
-        name: "Sơn giữ vân gỗ (Phun)",
-        paletteImg: "palette-phun.png",
-        layers: [
-            { step: 1, name: "Lót Trong Suốt 1K (Sanding Sealer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
-            { step: 2, name: "Sơn 2in1 Trong Nhà 1K (Finish Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Sơn 2in1 Ngoài Trời 1K (Finish Exterior)" }
-        ]
-    },
-    'bet': {
-        name: "Sơn màu bệt (MDF/Gỗ tự nhiên)",
-        paletteImg: "palette-bet.png",
-        layers: [
-            { step: 1, name: "Lót Trắng 1K (White Wood Primer)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
-            { step: 2, name: "Màu Bệt Trong Nhà 1K (Wood Paint Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 1K (Wood Paint Exterior)" },
-            { step: 3, name: "Phủ Bóng Lacquer Trong Nhà 1K", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Phủ Bóng Lacquer Ngoài Trời 1K", optional: true }
-        ]
-    },
-    'sat': {
-        name: "Sơn giả gỗ trên sắt",
-        paletteImg: "palette-sat.png",
-        layers: [
-            { step: 1, name: "Lót Kim Loại Chống Gỉ (Metal Primer) (LMCP)", method: 'phun', defaultLayers: 1, currentLayers: 1 },
-            { step: 2, name: "Metal Coat Finish giả gỗ (LWF)", method: 'quet', defaultLayers: 2, currentLayers: 2 },
-            { step: 3, name: "Phủ Bóng Lacquer Ngoài Trời 1K", method: 'phun', defaultLayers: 0, currentLayers: 1, isOutdoorOnly: true, optional: true }
-        ]
-    },
-    'ximang': {
-        name: "Sơn giả gỗ xi măng",
-        paletteImg: "palette-ximang.png",
-        layers: [
-            { step: 1, name: "Lót Giả Gỗ Tấm Xi Măng (Fiber Cement Wood Primer)", method: 'quet', defaultLayers: 1, currentLayers: 1 },
-            { step: 2, name: "Màu Giả Gỗ Vách/Trần Tấm Xi Măng (Fiber Cement Plank Paint)", method: 'quet', defaultLayers: 2, currentLayers: 2 },
-            { step: 3, name: "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", method: 'quet', defaultLayers: 1, currentLayers: 1, optional: 'indoorOnly' }
-        ]
-    },
-    '2k': {
-        name: "Sơn giữ vân gỗ (hệ 2K)",
-        paletteImg: "palette-2k-vun.png",
-        layers: [
-            { step: 1, name: "Sơn 2in1 Trong Nhà 2K (Finish MX83)", method: 'phun', defaultLayers: 2, currentLayers: 2, outdoorName: "Sơn 2in1 Ngoài Trời 2K (Finish MX83)" }
-        ]
-    },
-    'bet2k': {
-        name: "Sơn màu bệt 2K (MDF/Gỗ tự nhiên)",
-        paletteImg: "palette-2k-bet.png",
-        layers: [
-            { step: 1, name: "Lót Trắng 2K (MX83 Nội Thất)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Lót Trắng 2K (MX83 Ngoại Thất)" },
-            { step: 2, name: "Màu Bệt Trong Nhà 2K (Wood Paint MX83)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 2K (Wood Paint MX83)" }
-        ]
-    }
+    'lau': { name: "Sơn giữ vân gỗ (Lau)", paletteImg: "palette-lau.png", layers: [{ step: 1, name: "Sơn Lau Gỗ 1K (Wood Stain)", method: 'lau', defaultLayers: 2, currentLayers: 2 }, { step: 2, name: "Lót Trong Suốt 1K (Sanding Sealer)", method: 'phun', defaultLayers: 1, currentLayers: 1 }, { step: 3, name: "Phủ Bóng Lacquer Trong Nhà 1K", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Phủ Bóng Lacquer Ngoài Trời 1K" }] },
+    'phun': { name: "Sơn giữ vân gỗ (Phun)", paletteImg: "palette-phun.png", layers: [{ step: 1, name: "Lót Trong Suốt 1K (Sanding Sealer)", method: 'phun', defaultLayers: 1, currentLayers: 1 }, { step: 2, name: "Sơn 2in1 Trong Nhà 1K (Finish Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Sơn 2in1 Ngoài Trời 1K (Finish Exterior)" }] },
+    'bet': { name: "Sơn màu bệt (MDF/Gỗ tự nhiên)", paletteImg: "palette-bet.png", layers: [{ step: 1, name: "Lót Trắng 1K (White Wood Primer)", method: 'phun', defaultLayers: 1, currentLayers: 1 }, { step: 2, name: "Màu Bệt Trong Nhà 1K (Wood Paint Interior)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 1K (Wood Paint Exterior)" }, { step: 3, name: "Phủ Bóng Lacquer Trong Nhà 1K", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Phủ Bóng Lacquer Ngoài Trời 1K", optional: true }] },
+    'sat': { name: "Sơn giả gỗ trên sắt", paletteImg: "palette-sat.png", layers: [{ step: 1, name: "Lót Kim Loại Chống Gỉ (Metal Primer) (LMCP)", method: 'phun', defaultLayers: 1, currentLayers: 1 }, { step: 2, name: "Metal Coat Finish giả gỗ (LWF)", method: 'quet', defaultLayers: 2, currentLayers: 2 }, { step: 3, name: "Phủ Bóng Lacquer Ngoài Trời 1K", method: 'phun', defaultLayers: 1, currentLayers: 1, isOutdoorOnly: true, optional: true }] },
+    'ximang': { name: "Sơn giả gỗ xi măng", paletteImg: "palette-ximang.png", layers: [{ step: 1, name: "Lót Giả Gỗ Tấm Xi Măng (Fiber Cement Wood Primer)", method: 'quet', defaultLayers: 1, currentLayers: 1 }, { step: 2, name: "Màu Giả Gỗ Vách/Trần Tấm Xi Măng (Fiber Cement Plank Paint)", method: 'quet', defaultLayers: 2, currentLayers: 2 }, { step: 3, name: "Phủ Bóng Vách/Trần Tấm Xi Măng (Fiber Cement Shield)", method: 'quet', defaultLayers: 1, currentLayers: 1, optional: 'indoorOnly' }] },
+    '2k': { name: "Sơn giữ vân gỗ (hệ 2K)", paletteImg: "palette-2k-vun.png", layers: [{ step: 1, name: "Sơn 2in1 Trong Nhà 2K (Finish MX83)", method: 'phun', defaultLayers: 2, currentLayers: 2, outdoorName: "Sơn 2in1 Ngoài Trời 2K (Finish MX83)" }] },
+    'bet2k': { name: "Sơn màu bệt 2K (MDF/Gỗ tự nhiên)", paletteImg: "palette-2k-bet.png", layers: [{ step: 1, name: "Lót Trắng 2K (MX83 Nội Thất)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Lót Trắng 2K (MX83 Ngoại Thất)" }, { step: 2, name: "Màu Bệt Trong Nhà 2K (Wood Paint MX83)", method: 'phun', defaultLayers: 1, currentLayers: 1, outdoorName: "Màu Bệt Ngoài Trời 2K (Wood Paint MX83)" }] }
 };
 
 let currentProcess = 'lau';
@@ -97,368 +45,177 @@ function init() {
 }
 
 function setupEventListeners() {
-    // Tab Scrolling
     const tabsScroll = document.getElementById('tabsScroll');
-    const prevTab = document.getElementById('prevTab');
-    const nextTab = document.getElementById('nextTab');
-
-    if (prevTab && nextTab && tabsScroll) {
-        prevTab.onclick = () => tabsScroll.scrollBy({ left: -200, behavior: 'smooth' });
-        nextTab.onclick = () => tabsScroll.scrollBy({ left: 200, behavior: 'smooth' });
-    }
+    const prevBtn = document.getElementById('prevTab');
+    const nextBtn = document.getElementById('nextTab');
+    if (prevBtn) prevBtn.onclick = () => tabsScroll.scrollBy({ left: -200, behavior: 'smooth' });
+    if (nextBtn) nextBtn.onclick = () => tabsScroll.scrollBy({ left: 200, behavior: 'smooth' });
 
     const tabBtns = document.querySelectorAll('.tab-btn');
     tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.onclick = () => {
             tabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentProcess = btn.dataset.process;
-            // Reset current layers on tab switch
             PROCESSES[currentProcess].layers.forEach(l => l.currentLayers = l.defaultLayers);
             renderProcess();
             calculate();
-        });
+        };
     });
 
-    const locationRadios = document.querySelectorAll('input[name="location"]');
-    locationRadios.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-            currentLocation = e.target.value;
-            renderProcess();
-            calculate();
-        });
+    document.querySelectorAll('input[name="location"]').forEach(radio => {
+        radio.onchange = (e) => { currentLocation = e.target.value; renderProcess(); calculate(); };
     });
-
-    const areaInput = document.getElementById('area');
-    areaInput.addEventListener('input', calculate);
+    document.getElementById('area').oninput = calculate;
 }
 
 function renderProcess() {
     const proc = PROCESSES[currentProcess];
-    
-    // Update Title and Palette Button
-    const procTitle = document.getElementById('process-title');
     const paletteContainer = document.getElementById('palette-btn-container');
-    
-    if (procTitle) procTitle.textContent = `Quy trình: ${proc.name}`;
+    document.getElementById('process-title').textContent = `Quy trình: ${proc.name}`;
     if (paletteContainer) {
-        paletteContainer.innerHTML = proc.paletteImg ? `
-            <button class="palette-btn" id="openPalette">
-                <i data-lucide="palette" style="width:16px;height:16px;"></i> Click xem bảng màu
-            </button>
-        ` : '';
+        paletteContainer.innerHTML = proc.paletteImg ? `<button class="palette-btn" id="openPalette"><i data-lucide="palette" style="width:16px;height:16px;"></i> Xem bảng màu</button>` : '';
     }
-
     const list = document.getElementById('layers-list');
     list.innerHTML = '';
     proc.layers.forEach((l, index) => {
-        // Skip step 3 of 'sat' if indoor
         if (currentProcess === 'sat' && l.isOutdoorOnly && currentLocation === 'indoor') return;
-
         const prodName = (currentLocation === 'outdoor' && l.outdoorName) ? l.outdoorName : l.name;
-        
-        // Determine if optional toggle should show
-        let isStepOptional = false;
-        if (l.optional === true) isStepOptional = true;
-        if (l.optional === 'indoorOnly' && currentLocation === 'indoor') isStepOptional = true;
-
+        let isStepOptional = (l.optional === true) || (l.optional === 'indoorOnly' && currentLocation === 'indoor');
         const step = document.createElement('div');
         step.className = `step-card ${l.disabled ? 'disabled-step' : ''}`;
-        step.innerHTML = `
-            <div class="step-num">${l.step}</div>
-            <div class="step-body">
-                <h4>${prodName}</h4>
-                <p>Phương pháp: ${l.method === 'phun' ? 'Phun' : (l.method === 'lau' ? 'Lau' : 'Quét')}</p>
-                ${isStepOptional ? '<p class="save-note">Lớp hoàn thiện cao cấp: Giúp tăng cường độ bền tối đa và tạo vẻ đẹp sắc nét nhất cho công trình.</p>' : ''}
-            </div>
-            <div class="step-actions">
-                ${isStepOptional ? `
-                    <div class="toggle-container">
-                        <span class="toggle-label">${l.disabled ? 'Không chọn' : 'Đã chọn'}</span>
-                        <label class="switch">
-                            <input type="checkbox" class="optional-toggle" data-idx="${index}" ${l.disabled ? '' : 'checked'}>
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                ` : ''}
-                <div class="layer-control" style="${l.disabled ? 'opacity: 0.3; pointer-events: none;' : ''}">
-                    <button class="layer-btn minus" data-idx="${index}"><i data-lucide="minus"></i></button>
-                    <div class="layer-count"><span>${l.currentLayers === 0 && l.isOutdoorOnly ? 1 : l.currentLayers}</span> lớp</div>
-                    <button class="layer-btn plus" data-idx="${index}"><i data-lucide="plus"></i></button>
-                </div>
-            </div>
-        `;
+        step.innerHTML = `<div class="step-num">${l.step}</div><div class="step-body"><h4>${prodName}</h4><p>PT: ${l.method === 'phun' ? 'Phun' : (l.method === 'lau' ? 'Lau' : 'Quét')}</p></div><div class="step-actions">${isStepOptional ? `<label class="switch"><input type="checkbox" class="optional-toggle" data-idx="${index}" ${l.disabled ? '' : 'checked'}><span class="slider round"></span></label>` : ''}<div class="layer-control"><button class="layer-btn minus" data-idx="${index}"><i data-lucide="minus"></i></button><div class="layer-count"><span>${l.currentLayers}</span> lớp</div><button class="layer-btn plus" data-idx="${index}"><i data-lucide="plus"></i></button></div></div>`;
         list.appendChild(step);
     });
-
     lucide.createIcons();
-    
-    // Add logic for button clicks
-    const minusBtns = document.querySelectorAll('.layer-btn.minus');
-    const plusBtns = document.querySelectorAll('.layer-btn.plus');
-    const toggles = document.querySelectorAll('.optional-toggle');
+    document.querySelectorAll('.optional-toggle').forEach(t => t.onchange = () => { proc.layers[t.dataset.idx].disabled = !t.checked; renderProcess(); calculate(); });
+    document.querySelectorAll('.layer-btn.minus').forEach(btn => btn.onclick = () => { if (proc.layers[btn.dataset.idx].currentLayers > 1) { proc.layers[btn.dataset.idx].currentLayers--; renderProcess(); calculate(); }});
+    document.querySelectorAll('.layer-btn.plus').forEach(btn => btn.onclick = () => { if (proc.layers[btn.dataset.idx].currentLayers < 5) { proc.layers[btn.dataset.idx].currentLayers++; renderProcess(); calculate(); }});
 
-    toggles.forEach(t => {
-        t.onchange = () => {
-            const idx = t.dataset.idx;
-            proc.layers[idx].disabled = !t.checked;
-            renderProcess();
-            calculate();
-        };
-    });
-
-    minusBtns.forEach(btn => {
-        btn.onclick = () => {
-            const idx = btn.dataset.idx;
-            if (proc.layers[idx].currentLayers > 1) {
-                proc.layers[idx].currentLayers--;
-                renderProcess();
-                calculate();
-            }
-        };
-    });
-
-    plusBtns.forEach(btn => {
-        btn.onclick = () => {
-            const idx = btn.dataset.idx;
-            if (proc.layers[idx].currentLayers < 5) {
-                proc.layers[idx].currentLayers++;
-                renderProcess();
-                calculate();
-            }
-        };
-    });
-
-    // Palette Modal Logic
     const paletteBtn = document.getElementById('openPalette');
     const modal = document.getElementById('paletteModal');
-    const closeModal = document.getElementById('closeModal');
-    const paletteImg = document.getElementById('paletteImage');
-    const modalTitle = document.getElementById('modalTitle');
-
     if (paletteBtn && modal) {
         paletteBtn.onclick = () => {
-            paletteImg.src = proc.paletteImg;
-            paletteImg.classList.remove('zoomed'); // Reset zoom when opening
-            modalTitle.textContent = `Bảng màu: ${proc.name}`;
+            document.getElementById('paletteImage').src = proc.paletteImg;
+            document.getElementById('modalTitle').textContent = `Bảng màu: ${proc.name}`;
             modal.style.display = 'flex';
         };
     }
+    document.getElementById('closeModal').onclick = () => { modal.style.display = 'none'; };
 
+    const paletteImg = document.getElementById('paletteImage');
     if (paletteImg) {
-        paletteImg.ondblclick = () => {
-            paletteImg.classList.toggle('zoomed');
+        let isZoomed = false;
+        let lastTap = 0;
+        
+        // Hỗ trợ double tap trên mobile
+        paletteImg.addEventListener('touchstart', (e) => {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 400 && tapLength > 0) {
+                isZoomed = !isZoomed;
+                paletteImg.style.transform = isZoomed ? 'scale(2.5)' : 'scale(1)';
+                
+                if (e.touches.length > 0 && isZoomed) {
+                    const rect = paletteImg.getBoundingClientRect();
+                    const touch = e.touches[0];
+                    const x = (touch.clientX - rect.left) / rect.width * 100;
+                    const y = (touch.clientY - rect.top) / rect.height * 100;
+                    paletteImg.style.transformOrigin = `${x}% ${y}%`;
+                } else {
+                    paletteImg.style.transformOrigin = 'center center';
+                }
+                
+                paletteImg.style.transition = 'transform 0.3s ease';
+                paletteImg.parentElement.style.overflow = isZoomed ? 'auto' : 'hidden';
+                lastTap = 0;
+                e.preventDefault();
+            } else {
+                lastTap = currentTime;
+            }
+        });
+
+        // Hỗ trợ double click trên desktop
+        paletteImg.ondblclick = (e) => {
+            isZoomed = !isZoomed;
+            paletteImg.style.transform = isZoomed ? 'scale(2.5)' : 'scale(1)';
+            if (isZoomed) {
+                const rect = paletteImg.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width * 100;
+                const y = (e.clientY - rect.top) / rect.height * 100;
+                paletteImg.style.transformOrigin = `${x}% ${y}%`;
+            } else {
+                paletteImg.style.transformOrigin = 'center center';
+            }
+            paletteImg.style.transition = 'transform 0.3s ease';
+            paletteImg.parentElement.style.overflow = isZoomed ? 'auto' : 'hidden';
         };
     }
-
-    if (modal) {
-        closeModal.onclick = () => modal.style.display = 'none';
-        window.onclick = (event) => {
-            if (event.target == modal) modal.style.display = 'none';
-        };
-    }
-
-    lucide.createIcons();
 }
 
 function calculate() {
     const area = parseFloat(document.getElementById('area').value) || 0;
     const breakdown = document.getElementById('results-breakdown');
     breakdown.innerHTML = '';
-    
     const proc = PROCESSES[currentProcess];
-    const summaryText = document.getElementById('summary-text');
-    const summaryProcess = document.getElementById('summary-process');
-    
-    if (area <= 0) {
-        summaryText.textContent = "Vui lòng nhập diện tích";
-        if (summaryProcess) summaryProcess.textContent = "";
-        document.getElementById('total-cost').textContent = "0";
-        document.getElementById('m2-cost').textContent = "0";
-        return;
-    }
-
-    summaryText.textContent = `Định mức cho ${area} m²`;
-    if (summaryProcess) summaryProcess.textContent = `Quy trình: ${proc.name}`;
-
+    if (area <= 0) { document.getElementById('summary-text').textContent = "Vui lòng nhập diện tích"; document.getElementById('total-cost').textContent = "0"; return; }
+    document.getElementById('summary-text').textContent = `Diện tích: ${area} m² - Quy trình: ${proc.name}`;
     let totalCost = 0;
-
     proc.layers.forEach(l => {
-        // Skip hidden steps
         if (currentProcess === 'sat' && l.isOutdoorOnly && currentLocation === 'indoor') return;
         if (l.disabled) return;
-
         const prodName = (currentLocation === 'outdoor' && l.outdoorName) ? l.outdoorName : l.name;
         const product = products.find(p => p.name === prodName);
         if (!product) return;
-
         const yieldVal = YIELDS[l.method] || 8;
-        // If currentLayers is 0 but it's displayed as 1 (for outdoor only step), use 1
-        const layerCount = (l.currentLayers === 0 && l.isOutdoorOnly) ? 1 : l.currentLayers;
-        const kgNeeded = (area / yieldVal) * layerCount;
-
-        
+        const kgNeeded = (area / yieldVal) * l.currentLayers;
         const packCounts = getPackCounts(kgNeeded, product.prices);
         const cost = calculateCost(packCounts, product.prices);
         totalCost += cost;
-
         const item = document.createElement('div');
         item.className = 'breakdown-item';
-        item.innerHTML = `
-            <div class="item-row">
-                <span class="item-name">${prodName}</span>
-                <span class="item-price">${cost.toLocaleString('vi-VN')}đ</span>
-            </div>
-            <div class="item-qty">Định mức: ${kgNeeded.toFixed(2)} Kg | Mua: ${summarizePacks(packCounts)}</div>
-            <div class="item-details">
-                <span class="tag">${layerCount} lớp</span>
-                <span class="tag">${l.method}</span>
-            </div>
-            <div class="detail-btn" onclick="toggleDetails(this)" data-html2canvas-ignore="true">
-                <i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá
-            </div>
-            <div class="price-details" data-html2canvas-ignore="true">
-                <div class="price-list">
-                    ${renderPriceList(product.prices)}
-                </div>
-                <div class="calc-explanation">
-                    <strong>Chi tiết tính toán:</strong><br>
-                    ${getCalcExplanation(packCounts, product.prices)}
-                </div>
-            </div>
-        `;
+        item.innerHTML = `<div class="item-row"><span class="item-name">${prodName}</span><span class="item-price">${cost.toLocaleString('vi-VN')}đ</span></div><div class="item-qty">${kgNeeded.toFixed(2)} Kg | Mua: ${summarizePacks(packCounts)}</div>`;
         breakdown.appendChild(item);
-
-        // EXTRA: Hardener logic for 2K systems
-        if (product.hasHardener) {
-            const hProduct = products.find(p => p.name === "Chất đóng rắn 2K (Hardener)");
-            if (hProduct) {
-                // Use the specific product's ratio (e.g., 0.15 for MX83) or default to 0.25
-                const hRatio = product.hardenerRatio || 0.25;
-                const hKgNeeded = kgNeeded * hRatio;
-                const hPacks = getPackCounts(hKgNeeded, hProduct.prices);
-                const hCost = calculateCost(hPacks, hProduct.prices);
-                totalCost += hCost;
-
-                const hItem = document.createElement('div');
-                hItem.className = 'breakdown-item h-item';
-                hItem.style.borderLeftColor = "#f59e0b"; // Golden/Hardener color
-                hItem.innerHTML = `
-                    <div class="item-row">
-                        <span class="item-name">Chất đóng rắn 2K (Hardener)</span>
-                        <span class="item-price">${hCost.toLocaleString('vi-VN')}đ</span>
-                    </div>
-                    <div class="item-qty">Cần dùng: ${hKgNeeded.toFixed(2)} Kg | Mua: ${summarizePacks(hPacks)}</div>
-                    <div class="item-details">
-                        <span class="tag">Đi kèm ${prodName}</span>
-                    </div>
-                    <div class="detail-btn" onclick="toggleDetails(this)" data-html2canvas-ignore="true">
-                        <i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá
-                    </div>
-                    <div class="price-details" data-html2canvas-ignore="true">
-                        <div class="price-list">
-                            ${renderPriceList(hProduct.prices)}
-                        </div>
-                        <div class="calc-explanation">
-                            <strong>Chi tiết tính toán:</strong><br>
-                            ${getCalcExplanation(hPacks, hProduct.prices)}
-                        </div>
-                    </div>
-                `;
-                breakdown.appendChild(hItem);
-            }
-        }
     });
-
     document.getElementById('total-cost').textContent = totalCost.toLocaleString('vi-VN');
     document.getElementById('m2-cost').textContent = Math.round(totalCost / area).toLocaleString('vi-VN');
 }
 
-function getPackCounts(kg, prices) {
-    let remaining = kg;
-    const counts = { c20: 0, c5: 0, c35: 0, c1: 0 };
-    
-    if (prices["20kg"]) {
-        counts.c20 = Math.floor(remaining / 20);
-        remaining %= 20;
-    }
-    if (prices["5kg"]) {
-        counts.c5 = Math.floor(remaining / 5);
-        remaining %= 5;
-    } else if (prices["3.5kg"]) {
-        counts.c35 = Math.floor(remaining / 3.5);
-        remaining %= 3.5;
-    }
-    counts.c1 = Math.ceil(remaining);
-    return counts;
-}
+function getPackCounts(kg, prices) { let remaining = kg; const counts = { c20: 0, c5: 0, c35: 0, c1: 0 }; if (prices["20kg"]) { counts.c20 = Math.floor(remaining / 20); remaining %= 20; } if (prices["5kg"]) { counts.c5 = Math.floor(remaining / 5); remaining %= 5; } else if (prices["3.5kg"]) { counts.c35 = Math.floor(remaining / 3.5); remaining %= 3.5; } counts.c1 = Math.ceil(remaining); return counts; }
+function calculateCost(counts, prices) { return (counts.c20 * (prices["20kg"] || 0)) + (counts.c5 * (prices["5kg"] || 0)) + (counts.c35 * (prices["3.5kg"] || 0)) + (counts.c1 * (prices["1kg"] || 0)); }
+function summarizePacks(counts) { const parts = []; if (counts.c20 > 0) parts.push(`${counts.c20} th 20kg`); if (counts.c5 > 0) parts.push(`${counts.c5} th 5kg`); if (counts.c35 > 0) parts.push(`${counts.c35} th 3.5kg`); if (counts.c1 > 0) parts.push(`${counts.c1} lon 1kg`); return parts.join(', '); }
 
-function calculateCost(counts, prices) {
-    return (counts.c20 * (prices["20kg"] || 0)) + 
-           (counts.c5 * (prices["5kg"] || 0)) + 
-           (counts.c35 * (prices["3.5kg"] || 0)) + 
-           (counts.c1 * (prices["1kg"] || 0));
-}
+function exportImage() { html2canvas(document.querySelector('.results-card'), { backgroundColor: "#f8fafc", scale: 2 }).then(canvas => { const link = document.createElement('a'); link.download = `bao-gia-son-lotus-${Date.now()}.png`; link.href = canvas.toDataURL('image/png'); link.click(); }); }
 
-function toggleDetails(btn) {
-    const details = btn.nextElementSibling;
-    const isActive = details.classList.toggle('active');
-    btn.innerHTML = isActive ? 
-        `<i data-lucide="chevron-up" style="width:14px;height:14px;"></i> Thu gọn chi tiết` : 
-        `<i data-lucide="info" style="width:14px;height:14px;"></i> Xem chi tiết đơn giá`;
+function sendZalo() {
+    const lockKey = 'lotus_zalo_lock';
+    const now = Date.now();
+    const lockTime = localStorage.getItem(lockKey);
+    const area = document.getElementById('area').value || 0;
+    const proc = PROCESSES[currentProcess];
+    const total = document.getElementById('total-cost').textContent;
+    const getMsg = (code) => `✨ ĐƠN HÀNG ƯU ĐÃI TỪ WEBSITE ✨
+----------------------------
+● Mã ưu đãi: ${code}
+● Quy trình: ${proc.name}
+● Diện tích: ${area} m2
+● Tổng: ${total} VNĐ
+----------------------------
+${code === '***' ? 'Mã của tôi đã hết hạn, nhờ Lotus Paint kiểm tra giúp!' : `Gửi mã ${code} này để nhận ưu đãi tốt nhất!`}`;
+    const copyMsg = (txt) => { const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); };
+    if (lockTime && now < parseInt(lockTime)) { copyMsg(getMsg('***')); window.open(`https://zalo.me/0943966662`, '_blank'); return; }
+    const randomCode = 'LP-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+    localStorage.setItem(lockKey, (now + 3600000).toString());
+    copyMsg(getMsg(randomCode));
+    const overlay = document.createElement('div');
+    overlay.id = "zalo-overlay";
+    overlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.9); backdrop-filter:blur(15px); z-index:20000; display:flex; align-items:center; justify-content:center;";
+    overlay.innerHTML = `<div style="background:white; padding:30px; border-radius:24px; text-align:center; width:88%; max-width:350px; position:relative;"><div id="countdown-timer" style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); background:#ef4444; color:white; padding:5px 15px; border-radius:30px; font-weight:800;">30s</div><div style="background:#f0f7ff; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:10px auto 15px;"><i data-lucide="timer" style="width:30px;height:30px;color:#0068ff;"></i></div><h3 style="margin:0 0 5px 0; color:#0f172a; font-size:1.2rem; font-weight:800;">ƯU ĐÃI GIỚI HẠN!</h3><div style="background:#f8fafc; border:1px dashed #0068ff; padding:15px; border-radius:12px; margin-bottom:15px;"><span id="display-code" style="color:#0068ff; font-size:1.8rem; font-weight:900; letter-spacing:4px;">${randomCode}</span></div><p id="timer-instruction" style="margin:0 0 20px 0; color:#64748b; font-size:0.9rem; line-height:1.5;">Mã giảm giá của bạn đã được tạo và copy vào hệ thống. Hãy <b>Paste (Dán) & gửi</b> qua Zalo Sơn Lotus để nhận ưu đãi cho đơn hàng này.</p><button id="goZalo" style="background:#0068ff; color:white; border:none; padding:16px 20px; border-radius:16px; font-weight:800; width:100%; cursor:pointer;">MỞ ZALO & GỬI NGAY</button></div>`;
+    document.body.appendChild(overlay);
     lucide.createIcons();
+    let secondsLeft = 30;
+    const countdown = setInterval(() => { secondsLeft--; document.getElementById('countdown-timer').textContent = secondsLeft + 's'; if (secondsLeft <= 0) { clearInterval(countdown); document.getElementById('countdown-timer').textContent = "HẾT HẠN"; document.getElementById('display-code').textContent = "***"; copyMsg(getMsg('***')); } }, 1000);
+    document.getElementById('goZalo').onclick = () => { clearInterval(countdown); overlay.remove(); window.open(`https://zalo.me/0943966662`, '_blank'); };
 }
 
-function renderPriceList(prices) {
-    return Object.entries(prices).map(([size, price]) => `
-        <div class="price-tag">
-            ${size}:
-            <strong>${price.toLocaleString('vi-VN')}đ</strong>
-        </div>
-    `).join('');
-}
-
-function getCalcExplanation(counts, prices) {
-    const lines = [];
-    if (counts.c20) lines.push(`${counts.c20} thùng 20kg x ${prices["20kg"].toLocaleString('vi-VN')}đ`);
-    if (counts.c5) lines.push(`${counts.c5} thùng 5kg x ${prices["5kg"].toLocaleString('vi-VN')}đ`);
-    if (counts.c35) lines.push(`${counts.c35} thùng 3.5kg x ${prices["3.5kg"].toLocaleString('vi-VN')}đ`);
-    if (counts.c1) lines.push(`${counts.c1} lon 1kg x ${prices["1kg"].toLocaleString('vi-VN')}đ`);
-    
-    return lines.join('<br>+ ') + ` = <strong>${calculateCost(counts, prices).toLocaleString('vi-VN')}đ</strong>`;
-}
-
-function summarizePacks(counts) {
-    const parts = [];
-    if (counts.c20 > 0) parts.push(`${counts.c20} thùng 20kg`);
-    if (counts.c5 > 0) parts.push(`${counts.c5} thùng 5kg`);
-    if (counts.c35 > 0) parts.push(`${counts.c35} thùng 3.5kg`);
-    if (counts.c1 > 0) parts.push(`${counts.c1} lon 1kg`);
-    return parts.join(', ');
-}
-
-function exportImage() {
-    const target = document.querySelector('.results-card');
-    if (!target) return;
-
-    // Use html2canvas with CORS enabled for external images (QR Code)
-    html2canvas(target, { 
-        backgroundColor: "#f8fafc", 
-        scale: 2,
-        useCORS: true, 
-        allowTaint: false,
-        logging: true
-    }).then(canvas => {
-        try {
-            const link = document.createElement('a');
-            link.download = `bao-gia-son-lotus-${Date.now()}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        } catch (e) {
-            console.error("Lỗi khi tạo ảnh:", e);
-            alert("Có lỗi xảy ra khi tạo ảnh báo giá. Vui lòng thử lại.");
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', init);
+init();

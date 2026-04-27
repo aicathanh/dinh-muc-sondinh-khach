@@ -655,8 +655,15 @@ input:checked + .slider:before {
 /* Buttons */
 .action-buttons {
     display: flex;
-    gap: 15px;
+    flex-direction: column; /* Stacked by default for mobile impact */
+    gap: 12px;
     margin-bottom: 40px;
+}
+
+@media (min-width: 600px) {
+    .action-buttons {
+        flex-direction: row;
+    }
 }
 
 .btn {
@@ -736,12 +743,12 @@ footer {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(15, 23, 42, 0.6);
+    background-color: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(8px);
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    animation: fadeIn 0.3s ease;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 .modal-content {
@@ -752,6 +759,7 @@ footer {
     position: relative;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    margin: auto;
 }
 
 .modal-header {
