@@ -99,9 +99,19 @@ function renderProcess() {
             document.getElementById('paletteImage').src = proc.paletteImg;
             document.getElementById('modalTitle').textContent = `Bảng màu: ${proc.name}`;
             modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         };
     }
-    document.getElementById('closeModal').onclick = () => { modal.style.display = 'none'; };
+    document.getElementById('closeModal').onclick = () => { 
+        modal.style.display = 'none'; 
+        document.body.style.overflow = '';
+    };
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
 
     const paletteImg = document.getElementById('paletteImage');
     if (paletteImg) {
@@ -127,7 +137,7 @@ function renderProcess() {
                 }
                 
                 paletteImg.style.transition = 'transform 0.3s ease';
-                paletteImg.parentElement.style.overflow = isZoomed ? 'auto' : 'hidden';
+                paletteImg.parentElement.style.overflow = 'auto';
                 lastTap = 0;
                 e.preventDefault();
             } else {
@@ -148,7 +158,7 @@ function renderProcess() {
                 paletteImg.style.transformOrigin = 'center center';
             }
             paletteImg.style.transition = 'transform 0.3s ease';
-            paletteImg.parentElement.style.overflow = isZoomed ? 'auto' : 'hidden';
+            paletteImg.parentElement.style.overflow = 'auto';
         };
     }
 }
